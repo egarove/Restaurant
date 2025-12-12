@@ -11,21 +11,25 @@ const Products = () => {
   return (
     <View>
       <Text>Introduce new Product's name</Text>
+
       <TextInput
         onChangeText={changeDescription}
         value={description}
       />
+
       <Text>Introduce new Product's price</Text>
+
       <TextInput
         onChangeText={changePrice}
         value={price}
       />
+      
       <Button
         onPress={() => {
           dispatch({ type: "addProduct", payload: {description: description, price: parseFloat(price) }});
           console.log(description+"("+price+"€)"+" added");
         }}
-        title={"SAVE"}
+        title={"ADD"}
         color="#F59887"                    
       />
     </View>
