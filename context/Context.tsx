@@ -4,7 +4,8 @@ import { Product } from '../entities/Product';
 
 type State = {
   products: Product[],
-  tables: number
+  tablesNum: number,
+  tables: number[]
 };
 
 
@@ -12,10 +13,13 @@ export type Action =
     | { type: "addProduct" ; payload: Product }
     | { type: "deleteProduct" ; payload: Product }
     | { type: "changeTables" ; payload: number}
+    | { type: "addTable" ; payload: number}
+    | { type: "removeTable" ; payload: number}
 
 const initialState: State = {
     products: [],
-    tables: 1
+    tablesNum: 1,
+    tables: [1]
 };
 
 function reducer(state: State, action: Action): State {
@@ -25,7 +29,11 @@ function reducer(state: State, action: Action): State {
         case "deleteProduct":
             return { ...state, products: state.products.filter((item) => item.description != action.payload.description)};
         case "changeTables":
-            return { ...state, tables: action.payload};
+            return { ...state, tablesNum: action.payload};
+        case "addTable":
+            return { ...state, tables: [...state.tables, action.payload]};
+        case "removeTable":
+            return { ...state, tables: state.tables.filter((item) => item != action.payload)};
     }
 }
 

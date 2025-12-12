@@ -1,9 +1,10 @@
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Button, StyleSheet, Text, TextInput, View, FlatList} from 'react-native'
 import React, { useContext, useState } from 'react'
 import { AppContext } from '../context/Context';
+import { Product } from '../entities/Product';
 
 const Products = () => {
-  const { state, dispatch } = useContext(AppContext);
+    const { state, dispatch } = useContext(AppContext);
     const [ description, changeDescription ] = useState("");
     const [ price, changePrice ] = useState("");
 
@@ -23,14 +24,34 @@ const Products = () => {
         onChangeText={changePrice}
         value={price}
       />
-      
+
       <Button
         onPress={() => {
           dispatch({ type: "addProduct", payload: {description: description, price: parseFloat(price) }});
           console.log(description+"("+price+"€)"+" added");
+          //Borro los inputs para agilizar
+          changeDescription("");
+          changePrice("");
         }}
         title={"ADD"}
         color="#F59887"                    
+      />
+
+      <FlatList
+        data={state.products}
+        renderItem={({item}) => {return (
+        <View>
+            <Text>{item.description+" ("+item.price+"€)"}</Text>
+            <Button //boton para borra producto
+                onPress={() => {
+                    dispatch({ type: "deleteProduct", payload: item});
+                }}
+                title={"-"}
+                color="#F59887"                    
+            />
+        </View>
+        )}}
+        keyExtractor={item => item.description}
       />
     </View>
   )

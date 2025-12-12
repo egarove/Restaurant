@@ -6,6 +6,7 @@ import { Product } from '../entities/Product';
 const Configuration = () => {
 
     const { state, dispatch } = useContext(AppContext);
+    const [ tablesNum, changeTablesNum ] = useState(state.tablesNum);
     const [ tables, changeTables ] = useState(state.tables);
 
 
@@ -13,24 +14,26 @@ const Configuration = () => {
     <View>
       <Text>Number of Tables</Text>
 
-      <Text>{tables}</Text>
+      <Text>{tablesNum}</Text>
 
-      <Button
+      <Button //boton para crecer el numero
         onPress={() => {
-            changeTables(tables+1);
-            dispatch({ type: "changeTables", payload: tables});
+            changeTablesNum(tablesNum+1);
+            dispatch({ type: "changeTables", payload: tablesNum});
+            dispatch({ type: "addTable", payload: tablesNum}); //añado a la lista de mesas que en "Tables" recorro
         }}
         title={"+"}
         color="#F59887"                    
       />
 
-      <Button
+      <Button //boton para decrecer el numero
         onPress={() => {
-            if(tables<0 || tables==0){
+            if(tablesNum<0 || tablesNum==0){
                 console.log("Cant decrease tables...");
             } else{
-            changeTables(tables-1);
-            dispatch({ type: "changeTables", payload: tables});
+            changeTablesNum(tablesNum-1);
+            dispatch({ type: "changeTables", payload: tablesNum});
+            dispatch({ type: "removeTable", payload: tablesNum}); 
         }}}
         title={"-"}
         color="#F59887"                    
