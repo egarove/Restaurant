@@ -2,24 +2,24 @@ import { StyleSheet, Text, View } from 'react-native';
 import { AppProvider } from './context/Context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import AlumnoScreen from './screens/AlumnoScreen';
-import ProyectoScreen from './screens/ProyectoScreen';
-import RandomScreen from './screens/RandomScreen';
+import Configuration from './components/Configuration';
+import Tables from './components/Tables';
+import Products from './components/Products';
 
 
 
 export default function App() {
 const Tab = createBottomTabNavigator();
   return (
-<AppProvider>
+    <AppProvider>
       <NavigationContainer>
         <Tab.Navigator>
-          <Tab.Screen name="Alumnos" component={AlumnoScreen} />
-          <Tab.Screen name="Proyectos" component={ProyectoScreen} />
-          <Tab.Screen name="Reparto" component={RandomScreen} />
+          <Tab.Screen name="Products" component={Products} />
+          <Tab.Screen name="Tables" component={Tables} />
+          <Tab.Screen name="Configuration" component={Configuration} />
         </Tab.Navigator>
       </NavigationContainer>
-    </AppProvider>  
+    </AppProvider> 
   );
 }
 

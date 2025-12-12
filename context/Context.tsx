@@ -8,7 +8,6 @@ type State = {
 };
 
 
-
 export type Action =
     | { type: "addProduct" ; payload: Product }
     | { type: "deleteProduct" ; payload: Product }
