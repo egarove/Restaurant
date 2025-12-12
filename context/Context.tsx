@@ -23,7 +23,7 @@ function reducer(state: State, action: Action): State {
         case "addProduct":
             return { ...state, products: [...state.products, action.payload]};
         case "deleteProduct":
-            return { ...state, products: state.products.filter((item) => item.id != action.payload.id)};
+            return { ...state, products: state.products.filter((item) => item.description != action.payload.description)};
         case "changeTables":
             return { ...state, tables: action.payload};
     }

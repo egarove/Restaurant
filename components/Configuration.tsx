@@ -1,12 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
+import React, { useContext, useState } from 'react'
+import { AppContext } from '../context/Context';
+import { Product } from '../entities/Product';
 
 const Configuration = () => {
-  return (
-    <View>
-      <Text>Configuration</Text>
-    </View>
-  )
+
+    
 }
 
 export default Configuration
